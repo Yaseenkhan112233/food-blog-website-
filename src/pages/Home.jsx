@@ -44,7 +44,7 @@ const Home = () => {
         </h1>
 
         {/* Categories (Responsive Scrollable) */}
-        <div className="mb-6 overflow-x-auto whitespace-nowrap -mx-2 sm:mx-0">
+        <div className="mb-6 overflow-x-auto whitespace-nowrap -mx-2 sm:mx-0 no-scrollbar">
           <div className="inline-flex gap-2 px-2">
             {categories.map((cat) => (
               <button
