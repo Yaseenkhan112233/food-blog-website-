@@ -1,4 +1,16 @@
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebase"; // adjust path if needed
+
 const Sidebar = ({ isOpen }) => {
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      window.location.href = "/login"; // redirect after logout
+    } catch (error) {
+      console.error("Sign-out error:", error);
+    }
+  };
+
   return (
     <aside
       className={`${
@@ -7,19 +19,22 @@ const Sidebar = ({ isOpen }) => {
     >
       <div className="text-2xl font-bold">🍲 FoodyAI</div>
       <nav className="flex flex-col space-y-4">
-        <a href="#" className="hover:text-orange-300">
+        <a href="/" className="hover:text-orange-300">
           🏠 Home
         </a>
-        <a href="#" className="hover:text-orange-300">
+        <a href="/search" className="hover:text-orange-300">
           🔍 Search
         </a>
-        <a href="#" className="hover:text-orange-300">
+        <a href="/saved" className="hover:text-orange-300">
           💾 Save
         </a>
-        <a href="#" className="hover:text-orange-300">
+        <button
+          onClick={handleSignOut}
+          className="text-left hover:text-orange-300"
+        >
           🔓 Sign Out
-        </a>
-        <a href="#" className="hover:text-orange-300">
+        </button>
+        <a href="/support" className="hover:text-orange-300">
           🛠️ Support
         </a>
       </nav>
