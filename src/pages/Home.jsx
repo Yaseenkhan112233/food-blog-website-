@@ -26,6 +26,7 @@ const Home = () => {
 
   return (
     <div className="flex h-screen">
+      {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} />
 
       {/* Mobile Sidebar Toggle */}
@@ -42,24 +43,26 @@ const Home = () => {
           Featured Food Recipes
         </h1>
 
-        {/* Categories */}
-        <div className="mb-6 flex flex-wrap gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full border text-sm font-medium transition ${
-                selectedCategory === cat
-                  ? "bg-orange-500 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Categories (Responsive Scrollable) */}
+        <div className="mb-6 overflow-x-auto whitespace-nowrap -mx-2 sm:mx-0">
+          <div className="inline-flex gap-2 px-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`flex-shrink-0 px-3 py-1.5 rounded-full text-sm whitespace-nowrap border transition ${
+                  selectedCategory === cat
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Loader */}
+        {/* Loader or Recipes */}
         {loading ? (
           <div className="text-center text-orange-500 text-lg animate-pulse mt-12">
             Loading recipes...
@@ -71,7 +74,9 @@ const Home = () => {
                 <RecipeCard key={index} recipe={recipe} />
               ))
             ) : (
-              <p className="text-center text-gray-600">No recipes found.</p>
+              <p className="text-center text-gray-600 col-span-full">
+                No recipes found in this category.
+              </p>
             )}
           </div>
         )}
