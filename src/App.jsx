@@ -1,105 +1,44 @@
-// import { useState } from "react";
-// import SplashScreen from "./components/SplashScreen";
-// import Home from "./pages/Home";
-// import { RecipeProvider } from "./context/RecipeContext";
+// App.jsx
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/common/Layout";
 
-// function App() {
-//   const [showSplash, setShowSplash] = useState(true);
-
-//   return (
-//     <RecipeProvider>
-//       {showSplash ? (
-//         <SplashScreen onFinish={() => setShowSplash(false)} />
-//       ) : (
-//         <Home />
-//       )}
-//     </RecipeProvider>
-//   );
-// }
-
-// export default App;
-
-// import { useState, useEffect } from "react";
-// import SplashScreen from "./components/SplashScreen";
-// import Home from "./pages/Home";
-// import Login from "./pages/Login";
-// import { RecipeProvider } from "./context/RecipeContext";
-// import { AuthProvider, useAuth } from "./context/AuthContext";
-
-// function AppWrapper() {
-//   return (
-//     <AuthProvider>
-//       <RecipeProvider>
-//         <App />
-//       </RecipeProvider>
-//     </AuthProvider>
-//   );
-// }
-
-// function App() {
-//   const [showSplash, setShowSplash] = useState(true);
-//   const { user, authLoading } = useAuth();
-
-//   useEffect(() => {
-//     const timer = setTimeout(() => setShowSplash(false), 2000);
-//     return () => clearTimeout(timer);
-//   }, []);
-
-//   if (showSplash) return <SplashScreen />;
-
-//   if (authLoading) {
-//     return (
-//       <div className="flex items-center justify-center h-screen text-orange-500">
-//         Checking authentication...
-//       </div>
-//     );
-//   }
-
-//   return user ? <Home /> : <Login />;
-// }
-
-// export default AppWrapper;
-
-import { useState, useEffect } from "react";
-import SplashScreen from "./components/SplashScreen";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
+// Import contexts
+import { AuthProvider } from "./context/AuthContext";
 import { RecipeProvider } from "./context/RecipeContext";
-import { AuthProvider, useAuth } from "./context/AuthContext";
+import LoginModal from "./components/common/LoginModal";
 
-function AppWrapper() {
+// Import all pages
+import Dashboard from "./pages/DashboardPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import PopularPage from "./pages/PopularPage";
+import SavedPage from "./pages/SavedPage";
+import SignupPage from "./pages/SignupPage";
+import SignInPage from "./pages/SignInPage";
+import RecipeDetailPage from "./pages/RecipeDetailPage";
+import CategoryPage from "./pages/CategoryPage";
+
+const App = () => {
   return (
     <AuthProvider>
       <RecipeProvider>
-        <App />
+        <Layout>
+          <LoginModal />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/category/:category" element={<CategoryPage />} />
+            <Route path="/popular" element={<PopularPage />} />
+            <Route path="/saved" element={<SavedPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/recipe/:id" element={<RecipeDetailPage />} />
+          </Routes>
+        </Layout>
       </RecipeProvider>
     </AuthProvider>
   );
-}
+};
 
-function App() {
-  const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
-  const { user, authLoading } = useAuth();
-
-  useEffect(() => {
-    // Show splash screen only once at initial mount
-    const timer = setTimeout(() => {
-      setHasLoadedOnce(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!hasLoadedOnce) return <SplashScreen />;
-
-  if (authLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen text-orange-500">
-        Checking authentication...
-      </div>
-    );
-  }
-
-  return user ? <Home /> : <Login />;
-}
-
-export default AppWrapper;
+export default App;

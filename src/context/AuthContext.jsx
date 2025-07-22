@@ -1,47 +1,45 @@
-// context/AuthContext.jsx
-import { createContext, useContext, useEffect, useState } from "react";
-import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
-import { auth, googleProvider } from "../firebase/firebase";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { auth } from "../firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
+// Create the Auth Context
 const AuthContext = createContext();
 
+// Custom hook for using the auth context
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+// Provider component
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      setAuthLoading(false);
+    // Subscribe to auth state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false);
     });
-    return () => unsubscribe();
+
+    // Cleanup subscription
+    return unsubscribe;
   }, []);
 
-  const loginWithEmail = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
+  // Login modal state
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-  const loginWithGoogle = () => signInWithPopup(auth, googleProvider);
-
-  const logout = () => signOut(auth);
+  const value = {
+    currentUser,
+    isLoggedIn: !!currentUser,
+    isLoginModalOpen,
+    openLoginModal: () => setIsLoginModalOpen(true),
+    closeLoginModal: () => setIsLoginModalOpen(false),
+  };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        authLoading,
-        loginWithEmail,
-        loginWithGoogle,
-        logout,
-      }}
-    >
-      {children}
+    <AuthContext.Provider value={value}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
-
-export const useAuth = () => useContext(AuthContext);
