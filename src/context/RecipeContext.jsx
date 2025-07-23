@@ -25,11 +25,14 @@ const initialRecipes = {
       rating: 4.8,
       cookTime: "30 min",
       servings: 4,
-      image: "🍜",
+      image:
+        "https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=2025&auto=format&fit=crop",
       isPopular: true,
       images: [
-        "/images/chinese-shrimp-noodles-1.jpg",
-        "/images/chinese-shrimp-noodles-2.jpg",
+        "https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=2025&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=2080&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1617692855027-33b14f061079?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=2060&auto=format&fit=crop",
       ],
       description:
         "A delicious stir-fry noodle dish with succulent shrimp, crisp vegetables, and a savory sauce.",
@@ -63,8 +66,15 @@ const initialRecipes = {
       rating: 4.9,
       cookTime: "25 min",
       servings: 4,
-      image: "🍗",
+      image:
+        "https://images.unsplash.com/photo-1525755662778-989d0524087e?q=80&w=2076&auto=format&fit=crop",
       isPopular: true,
+      images: [
+        "https://images.unsplash.com/photo-1525755662778-989d0524087e?q=80&w=2076&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1571167366136-b57e07761625?q=80&w=1974&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1525755662778-989d0524087e?q=80&w=2076&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1464093515883-ec948246accb?q=80&w=2059&auto=format&fit=crop",
+      ],
       description:
         "A spicy, stir-fried Chinese dish made with chicken, peanuts, vegetables, and chili peppers.",
       ingredients: [
@@ -97,8 +107,15 @@ const initialRecipes = {
       rating: 4.7,
       cookTime: "40 min",
       servings: 3,
-      image: "🥢",
+      image:
+        "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=2010&auto=format&fit=crop",
       isPopular: false,
+      images: [
+        "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=2010&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1541832676-9b763b0239ab?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?q=80&w=2080&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=2060&auto=format&fit=crop",
+      ],
       description:
         "Crispy pieces of pork coated in a tangy, sweet and sour sauce with bell peppers, onions, and pineapple.",
       ingredients: [
@@ -133,8 +150,15 @@ const initialRecipes = {
       rating: 4.9,
       cookTime: "20 min",
       servings: 2,
-      image: "🍝",
+      image:
+        "https://images.unsplash.com/photo-1588013273468-315fd88ea34c?q=80&w=2069&auto=format&fit=crop",
       isPopular: true,
+      images: [
+        "https://images.unsplash.com/photo-1588013273468-315fd88ea34c?q=80&w=2069&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=2071&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=2070&auto=format&fit=crop",
+      ],
       description:
         "A classic Italian pasta dish made with eggs, cheese, pancetta, and black pepper.",
       ingredients: [
@@ -163,8 +187,15 @@ const initialRecipes = {
       rating: 4.8,
       cookTime: "30 min",
       servings: 4,
-      image: "🍕",
+      image:
+        "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?q=80&w=2067&auto=format&fit=crop",
       isPopular: true,
+      images: [
+        "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?q=80&w=2067&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=2069&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=2081&auto=format&fit=crop",
+      ],
       description:
         "A simple yet delicious pizza topped with tomatoes, mozzarella cheese, fresh basil, and olive oil.",
       ingredients: [
@@ -195,8 +226,15 @@ const initialRecipes = {
       rating: 4.7,
       cookTime: "15 min",
       servings: 1,
-      image: "🍔",
+      image:
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop",
       isPopular: true,
+      images: [
+        "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1899&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=2080&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1561758033-7e924f619b47?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=2030&auto=format&fit=crop",
+      ],
       description:
         "A juicy beef patty topped with melted cheese, lettuce, tomato, and special sauce, served in a soft bun.",
       ingredients: [
@@ -229,8 +267,15 @@ const initialRecipes = {
       rating: 4.8,
       cookTime: "45 min",
       servings: 4,
-      image: "🍗",
+      image:
+        "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=2070&auto=format&fit=crop",
       isPopular: true,
+      images: [
+        "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?q=80&w=1974&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1569058242567-93de6f36f8eb?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=2073&auto=format&fit=crop",
+      ],
       description:
         "Juicy chicken pieces coated in a seasoned breading and deep-fried until golden and crispy.",
       ingredients: [
@@ -265,8 +310,15 @@ const initialRecipes = {
       rating: 4.6,
       cookTime: "25 min",
       servings: 2,
-      image: "🥗",
+      image:
+        "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=1974&auto=format&fit=crop",
       isPopular: true,
+      images: [
+        "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=1974&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=2070&auto=format&fit=crop",
+      ],
       description:
         "A nutritious bowl with quinoa, fresh vegetables, feta cheese, olives, and a light lemon dressing.",
       ingredients: [
@@ -301,8 +353,15 @@ const initialRecipes = {
       rating: 4.5,
       cookTime: "20 min",
       servings: 4,
-      image: "🧀",
+      image:
+        "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?q=80&w=2070&auto=format&fit=crop",
       isPopular: true,
+      images: [
+        "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1582169296194-e4d644c48063?q=80&w=2000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1625536050891-0e51b94123c5?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1593501598901-3c29df3a5b6c?q=80&w=2070&auto=format&fit=crop",
+      ],
       description:
         "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa, guacamole, and sour cream.",
       ingredients: [
@@ -337,8 +396,15 @@ const initialRecipes = {
       rating: 4.9,
       cookTime: "1 hr 30 min",
       servings: 6,
-      image: "🍚",
+      image:
+        "https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1974&auto=format&fit=crop",
       isPopular: true,
+      images: [
+        "https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1974&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1633945499688-ec7cc4614fc2?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1630851840633-f96999247032?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1631515242808-497c3fbd3972?q=80&w=2070&auto=format&fit=crop",
+      ],
       description:
         "A fragrant Indian rice dish with tender chicken pieces, aromatic spices, and caramelized onions.",
       ingredients: [

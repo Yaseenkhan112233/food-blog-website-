@@ -56,30 +56,6 @@ const CategoryPage = () => {
       <h1 className="text-3xl font-bold text-slate-800 mb-8">
         {categoryTitles[category] || "Category"}
       </h1>
-
-      {/* Popular Dishes in Category */}
-      {popularRecipes.length > 0 && (
-        <div className="mb-10">
-          <h2 className="text-2xl font-bold text-slate-800 mb-6">
-            Popular {categoryTitles[category]} Dishes
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {popularRecipes.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                id={recipe.id}
-                image={recipe.image}
-                title={recipe.title}
-                subtitle={recipe.subtitle}
-                rating={recipe.rating}
-                cookTime={recipe.cookTime}
-                servings={recipe.servings}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* All Dishes in Category */}
       <div>
         <h2 className="text-2xl font-bold text-slate-800 mb-6">
@@ -100,6 +76,29 @@ const CategoryPage = () => {
           ))}
         </div>
       </div>
+
+      {/* Popular Dishes in Category */}
+      {popularRecipes.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-2xl font-bold text-slate-800 mb-6">
+            Popular {categoryTitles[category]} Dishes
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {popularRecipes.map((recipe) => (
+              <RecipeCard
+                key={recipe.id}
+                id={recipe.id}
+                image={recipe.image}
+                title={recipe.title}
+                subtitle={recipe.subtitle}
+                rating={recipe.rating}
+                cookTime={recipe.cookTime}
+                servings={recipe.servings}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

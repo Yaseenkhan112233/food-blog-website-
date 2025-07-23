@@ -41,32 +41,43 @@ const Categories = ({ onGenerateClick }) => {
   const categories = [
     {
       categoryId: "chinese",
-      image: "🍜",
+      image:
+        "https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=2060&auto=format&fit=crop",
       title: "Chinese",
       bgColor: "bg-red-50",
     },
     {
       categoryId: "italian",
-      image: "🍝",
+      image:
+        "https://images.unsplash.com/photo-1595295333158-4742f28fbd85?q=80&w=2080&auto=format&fit=crop",
       title: "Italian",
       bgColor: "bg-orange-50",
     },
     {
       categoryId: "fastFood",
-      image: "🍔",
+      image:
+        "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=2071&auto=format&fit=crop",
       title: "Fast Food",
       bgColor: "bg-yellow-50",
     },
     {
       categoryId: "healthy",
-      image: "🥗",
+      image:
+        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop",
       title: "Healthy",
       bgColor: "bg-green-50",
     },
-    { categoryId: "bar", image: "🍹", title: "Bar", bgColor: "bg-pink-50" },
+    {
+      categoryId: "bar",
+      image:
+        "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop",
+      title: "Bar",
+      bgColor: "bg-pink-50",
+    },
     {
       categoryId: "desi",
-      image: "🍛",
+      image:
+        "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?q=80&w=2042&auto=format&fit=crop",
       title: "Desi Cuisine",
       bgColor: "bg-amber-50",
     },

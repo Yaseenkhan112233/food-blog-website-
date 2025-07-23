@@ -38,17 +38,25 @@ const RecipeCard = ({
       onClick={handleCardClick}
       className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group"
     >
-      {/* Emoji Image / Header */}
-      <div className="h-32 sm:h-36 md:h-40 bg-gradient-to-br from-orange-200 to-orange-300 flex items-center justify-center relative">
-        <span className="text-4xl sm:text-5xl group-hover:scale-110 transition-transform duration-300">
-          {image}
-        </span>
+      {/* Recipe Image / Header */}
+      <div className="h-40 sm:h-48 md:h-52 relative overflow-hidden">
+        {typeof image === "string" && image.startsWith("http") ? (
+          <img
+            src={image}
+            alt={`${title} ${subtitle}`}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+        ) : (
+          <div className="h-full w-full bg-gradient-to-br from-orange-200 to-orange-300 flex items-center justify-center">
+            <span className="text-4xl sm:text-5xl">{image}</span>
+          </div>
+        )}
 
         <button
           onClick={handleSaveClick}
           className={`absolute top-3 right-3 p-2 rounded-full ${
             isSaved ? "bg-red-500 text-white" : "bg-white text-slate-600"
-          } hover:scale-110 transition-all duration-200`}
+          } hover:scale-110 transition-all duration-200 shadow-md`}
         >
           <Heart className={`w-4 h-4 ${isSaved ? "fill-current" : ""}`} />
         </button>

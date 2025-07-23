@@ -79,8 +79,8 @@ const Sidebar = ({ isOpen, onClose }) => {
       </div>
 
       {/* Sidebar Title (desktop) */}
-      <h1 className="hidden lg:block text-2xl font-bold text-slate-800 mb-8 text-center pt-4">
-        RecipeGen
+      <h1 className="hidden lg:block text-3xl font-bold text-slate-800 mb-8 text-center pt-4">
+        Welcome
       </h1>
 
       <nav className="p-4 overflow-y-auto h-full">

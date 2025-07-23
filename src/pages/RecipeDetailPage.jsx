@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Star, Heart, Clock, Users, ArrowLeft } from "lucide-react";
 import { useRecipes } from "../context/RecipeContext";
@@ -10,6 +10,7 @@ const RecipeDetailPage = () => {
   const navigate = useNavigate();
   const { getRecipeById, isRecipeSaved, toggleSaveRecipe } = useRecipes();
   const { isLoggedIn, openLoginModal } = useAuth();
+  const [selectedImage, setSelectedImage] = useState(0);
 
   const recipe = getRecipeById(recipeId);
 
@@ -20,14 +21,13 @@ const RecipeDetailPage = () => {
       return;
     }
 
-    // Redirect to dashboard if user is not logged in
-    if (!isLoggedIn) {
-      openLoginModal();
-      navigate("/");
+    // Set the first image as selected by default when recipe changes
+    if (recipe?.images?.length > 0) {
+      setSelectedImage(0);
     }
-  }, [recipe, navigate, isLoggedIn, openLoginModal]);
+  }, [recipe, navigate]);
 
-  if (!recipe || !isLoggedIn) {
+  if (!recipe) {
     return null; // This will be handled by the useEffect redirect
   }
 
@@ -43,8 +43,10 @@ const RecipeDetailPage = () => {
     navigate(-1); // Go back to previous page
   };
 
+  const hasMultipleImages = recipe.images && recipe.images.length > 1;
+
   return (
-    <div className="max-w-7xl mx-auto bg-gray-50">
+    <div className="max-w-7xl mx-auto bg-gray-50 pb-12">
       {/* Back Button */}
       <button
         onClick={handleBack}
@@ -60,23 +62,45 @@ const RecipeDetailPage = () => {
       </h1>
 
       {/* Recipe Images */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        {recipe.images ? (
-          recipe.images.map((img, index) => (
-            <div key={index} className="rounded-xl overflow-hidden shadow-sm">
-              <img
-                src={img}
-                alt={`${recipe.title} ${index + 1}`}
-                className="w-full h-60 object-cover"
-              />
-            </div>
-          ))
-        ) : (
-          <div className="bg-gradient-to-br from-orange-200 to-orange-300 h-60 rounded-xl flex items-center justify-center">
-            <span className="text-8xl">{recipe.image}</span>
+      {recipe.images && recipe.images.length > 0 ? (
+        <div className="mb-8">
+          {/* Main Image */}
+          <div className="rounded-xl overflow-hidden shadow-md mb-4">
+            <img
+              src={recipe.images[selectedImage]}
+              alt={`${recipe.title} ${recipe.subtitle}`}
+              className="w-full h-80 md:h-96 object-cover"
+            />
           </div>
-        )}
-      </div>
+
+          {/* Thumbnail Gallery */}
+          {hasMultipleImages && (
+            <div className="flex space-x-2 overflow-x-auto pb-2">
+              {recipe.images.map((img, index) => (
+                <div
+                  key={index}
+                  className={`rounded-lg overflow-hidden cursor-pointer transition-all duration-200 ${
+                    index === selectedImage
+                      ? "ring-2 ring-orange-500"
+                      : "opacity-70 hover:opacity-100"
+                  }`}
+                  onClick={() => setSelectedImage(index)}
+                >
+                  <img
+                    src={img}
+                    alt={`${recipe.title} thumbnail ${index + 1}`}
+                    className="w-24 h-16 object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="bg-gradient-to-br from-orange-200 to-orange-300 h-60 rounded-xl flex items-center justify-center mb-8">
+          <span className="text-8xl">{recipe.image}</span>
+        </div>
+      )}
 
       {/* Recipe Meta Info */}
       <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
@@ -141,7 +165,7 @@ const RecipeDetailPage = () => {
         <ol className="space-y-4">
           {recipe.instructions.map((step, idx) => (
             <li key={idx} className="flex">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center mr-4 mt-0.5">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center mr-4 mt-0.5">
                 {idx + 1}
               </span>
               <span className="flex-grow">{step}</span>
