@@ -10,12 +10,20 @@ const Layout = ({ children }) => {
       {/* Header */}
       <Header onMenuClick={() => setSidebarOpen(true)} />
 
-      <div className="flex flex-1 relative">
-        {/* Sidebar (responsive) */}
+      {/* Add space for fixed header */}
+      <div className="pt-16"></div>
+
+      <div className="flex flex-1">
+        {/* Sidebar (fixed) */}
+        <div className="hidden lg:block w-64 flex-shrink-0">
+          {/* This is just a placeholder for sidebar space */}
+        </div>
+
+        {/* Actual sidebar that's fixed */}
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        {/* Main content - scrollable but hide scrollbar */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto no-scrollbar h-[calc(100vh-64px)]">
+        {/* Main content area - with its own scrollbar */}
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
           <div className="max-w-6xl mx-auto">{children}</div>
         </main>
       </div>

@@ -59,7 +59,7 @@ const Header = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="bg-white shadow-sm px-4 sm:px-6 py-4">
+    <header className="bg-white shadow-sm px-4 sm:px-6 py-4 fixed top-0 left-0 right-0 z-50 h-16">
       <div className="flex items-center justify-between max-w-7xl mx-auto gap-4">
         {/* Left: Logo + Mobile Menu */}
         <div className="flex items-center space-x-2">
@@ -82,7 +82,7 @@ const Header = ({ onMenuClick }) => {
             className="text-xl font-bold text-slate-800 cursor-pointer"
             onClick={() => navigate("/")}
           >
-            RecipeGen
+            ReciGen
           </span>
         </div>
 

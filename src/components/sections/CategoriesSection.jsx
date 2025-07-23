@@ -35,6 +35,7 @@
 
 import React from "react";
 import CategoryCard from "../cards/CategoryCard";
+import MultiImageCategoryCard from "../cards/MultiImageCategoryCard";
 import GenerateRecipeCard from "../cards/GenerateRecipeCard";
 
 const Categories = ({ onGenerateClick }) => {
@@ -74,23 +75,29 @@ const Categories = ({ onGenerateClick }) => {
       title: "Bar",
       bgColor: "bg-pink-50",
     },
-    {
-      categoryId: "desi",
-      image:
-        "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?q=80&w=2042&auto=format&fit=crop",
-      title: "Desi Cuisine",
-      bgColor: "bg-amber-50",
-    },
   ];
+
+  // Separate the desi cuisine with multiple images
+  const desiCuisineCategory = {
+    categoryId: "desi",
+    images: [
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGVzaSUyMGZvb2R8ZW58MHx8MHx8fDA%3D",
+      "https://images.unsplash.com/photo-1630851840633-f96999247032?q=80&w=2070&auto=format&fit=crop",
+    ],
+    title: "Desi Cuisine",
+    bgColor: "bg-amber-50",
+  };
 
   return (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center md:text-left">
+      {/* <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center md:text-left">
         Categories
-      </h2>
+      </h2> */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-        {categories.map((category) => (
+      {/* First row - 4 categories */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+        {categories.slice(0, 4).map((category) => (
           <CategoryCard
             key={category.categoryId}
             image={category.image}
@@ -99,6 +106,27 @@ const Categories = ({ onGenerateClick }) => {
             categoryId={category.categoryId}
           />
         ))}
+      </div>
+
+      {/* Second row - Bar, Desi Cuisine with images, and Generate */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* Bar category */}
+        <CategoryCard
+          key={categories[4].categoryId}
+          image={categories[4].image}
+          title={categories[4].title}
+          bgColor={categories[4].bgColor}
+          categoryId={categories[4].categoryId}
+        />
+
+        {/* Desi cuisine with multiple images */}
+        <MultiImageCategoryCard
+          key={desiCuisineCategory.categoryId}
+          images={desiCuisineCategory.images}
+          title={desiCuisineCategory.title}
+          bgColor={desiCuisineCategory.bgColor}
+          categoryId={desiCuisineCategory.categoryId}
+        />
 
         {/* Special Generate Button */}
         <GenerateRecipeCard onClick={onGenerateClick} />

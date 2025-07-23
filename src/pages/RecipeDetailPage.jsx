@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { Star, Heart, Clock, Users, ArrowLeft } from "lucide-react";
 import { useRecipes } from "../context/RecipeContext";
 import { useAuth } from "../context/AuthContext";
@@ -25,10 +25,20 @@ const RecipeDetailPage = () => {
     if (recipe?.images?.length > 0) {
       setSelectedImage(0);
     }
-  }, [recipe, navigate]);
 
+    // If user is not logged in, show login modal
+    if (!isLoggedIn) {
+      openLoginModal();
+    }
+  }, [recipe, navigate, isLoggedIn, openLoginModal]);
+
+  // If recipe doesn't exist or user is not logged in, redirect to home
   if (!recipe) {
     return null; // This will be handled by the useEffect redirect
+  }
+
+  if (!isLoggedIn) {
+    return <Navigate to="/" />;
   }
 
   const handleSaveRecipe = () => {
