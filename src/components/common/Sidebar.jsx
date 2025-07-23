@@ -1,10 +1,12 @@
 import React from "react";
 import { ChefHat, Utensils, Star, Heart, User } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Sidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isLoggedIn } = useAuth();
 
   // Determine active item based on current path
   const getActiveItem = () => {
@@ -47,7 +49,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     },
     {
       id: "signup",
-      label: "Sign Up",
+      label: isLoggedIn ? "Profile" : "Sign Up",
       icon: <User className="w-5 h-5" />,
       path: "/signup",
     },
@@ -89,8 +91,8 @@ const Sidebar = ({ isOpen, onClose }) => {
                 onClick={() => handleNavigation(item.path)}
                 className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                   activeItem === item.id
-                    ? "bg-blue-100 text-blue-700 border-r-4 border-blue-500"
-                    : "text-slate-600 hover:bg-slate-100"
+                    ? "bg-orange-50 text-orange-600 border-r-4 border-orange-300"
+                    : "text-slate-600 hover:bg-slate-50"
                 }`}
               >
                 {item.icon}

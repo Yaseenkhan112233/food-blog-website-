@@ -37,7 +37,7 @@ const CategoryCard = ({
   return (
     <div
       onClick={handleClick}
-      className={`${bgColor} rounded-2xl px-4 py-6 sm:px-6 sm:py-8 cursor-pointer hover:shadow-md transition-all duration-300 hover:scale-105`}
+      className={`${bgColor} rounded-2xl  sm:py-8 cursor-pointer hover:shadow-md transition-all duration-300 hover:scale-105`}
     >
       <div className="flex flex-col items-center text-center">
         <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white flex items-center justify-center mb-4 shadow-sm">

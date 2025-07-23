@@ -44,7 +44,7 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="p-4 sm:p-6">
+    <div className="">
       <button
         onClick={handleBack}
         className="flex items-center text-slate-600 hover:text-slate-800 mb-6"

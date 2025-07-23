@@ -8,7 +8,17 @@ import { auth, googleProvider, storage } from "../firebase/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { User, LogOut, Camera, Upload } from "lucide-react";
+import {
+  User,
+  LogOut,
+  Camera,
+  Upload,
+  Mail,
+  UserCircle,
+  CheckCircle,
+  AlertCircle,
+  Calendar,
+} from "lucide-react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const SignupPage = () => {
@@ -21,6 +31,7 @@ const SignupPage = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [activeTab, setActiveTab] = useState("profile");
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
@@ -167,103 +178,239 @@ const SignupPage = () => {
   // If user is logged in, show profile information
   if (isLoggedIn) {
     return (
-      <div className="flex items-center justify-center min-h-[80vh] p-4">
-        <div className="max-w-md w-full bg-white rounded-xl shadow-md p-8">
-          <h1 className="text-2xl font-bold text-center mb-6">Your Profile</h1>
-
-          {error && (
-            <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm">
-              {error}
-            </div>
-          )}
-
-          {successMessage && (
-            <div className="bg-green-50 text-green-600 p-3 rounded-lg mb-4 text-sm">
-              {successMessage}
-            </div>
-          )}
-
-          <div className="flex flex-col items-center mb-6">
-            <div
-              className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-4 overflow-hidden relative cursor-pointer"
-              onClick={handleImageClick}
-            >
-              {profileImageUrl ? (
-                <img
-                  src={profileImageUrl}
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <User className="w-12 h-12 text-blue-500" />
-              )}
-              <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                <Camera className="w-6 h-6 text-white" />
+      <div className="flex items-start justify-center min-h-[80vh] p-4 bg-gray-50">
+        <div className="w-full max-w-5xl bg-white rounded-2xl shadow-md overflow-hidden">
+          <div className="md:flex">
+            {/* Sidebar/Navigation */}
+            <div className="md:w-64 bg-orange-50 md:min-h-[600px] p-6">
+              <div className="flex flex-col items-center mb-8">
+                <div
+                  className="w-24 h-24 rounded-full border-4 border-white overflow-hidden cursor-pointer relative mb-4 bg-white"
+                  onClick={handleImageClick}
+                >
+                  {profileImageUrl ? (
+                    <img
+                      src={profileImageUrl}
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <User className="w-full h-full p-2 text-orange-400" />
+                  )}
+                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <Camera className="w-8 h-8 text-white" />
+                  </div>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    className="hidden"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                  />
+                </div>
+                <h2 className="text-xl font-bold text-slate-800">
+                  {username || "User"}
+                </h2>
+                <p className="text-sm text-slate-600 truncate max-w-[180px]">
+                  {email}
+                </p>
               </div>
-              <input
-                type="file"
-                ref={fileInputRef}
-                className="hidden"
-                accept="image/*"
-                onChange={handleImageChange}
-              />
-            </div>
-          </div>
 
-          <form onSubmit={handleProfileUpdate} className="space-y-4">
-            <div>
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Username
-              </label>
-              <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
+              {/* Navigation menu */}
+              <nav className="mt-8">
+                <ul className="space-y-2">
+                  <li>
+                    <button
+                      onClick={() => setActiveTab("profile")}
+                      className={`w-full text-left px-4 py-3 rounded-lg flex items-center transition-colors ${
+                        activeTab === "profile"
+                          ? "bg-white text-orange-500 shadow-sm"
+                          : "text-slate-700 hover:bg-orange-100"
+                      }`}
+                    >
+                      <UserCircle className="w-5 h-5 mr-3" />
+                      <span>Profile Information</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => setActiveTab("account")}
+                      className={`w-full text-left px-4 py-3 rounded-lg flex items-center transition-colors ${
+                        activeTab === "account"
+                          ? "bg-white text-orange-500 shadow-sm"
+                          : "text-slate-700 hover:bg-orange-100"
+                      }`}
+                    >
+                      <Mail className="w-5 h-5 mr-3" />
+                      <span>Account Settings</span>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
 
-            <div>
-              <label
-                htmlFor="profile-email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="profile-email"
-                value={email}
-                readOnly
-                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Email cannot be changed
-              </p>
+              <div className="mt-auto pt-6">
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center justify-center px-4 py-2 mt-10 bg-red-100 text-red-600 hover:bg-red-200 rounded-lg transition-colors"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </button>
+              </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-70"
-            >
-              {loading ? "Updating..." : "Update Profile"}
-            </button>
-          </form>
+            {/* Main content area */}
+            <div className="flex-1 p-6 md:p-8">
+              {/* Notification messages */}
+              {error && (
+                <div className="flex items-center bg-red-50 text-red-700 p-4 rounded-lg mb-6 text-sm">
+                  <AlertCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
 
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <button
-              onClick={handleLogout}
-              className="flex items-center justify-center w-full px-4 py-2 text-sm text-red-600 hover:text-red-800 transition-colors"
-            >
-              <LogOut className="w-4 h-4 mr-2" />
-              Sign Out
-            </button>
+              {successMessage && (
+                <div className="flex items-center bg-green-50 text-green-700 p-4 rounded-lg mb-6 text-sm">
+                  <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+                  <span>{successMessage}</span>
+                </div>
+              )}
+
+              {activeTab === "profile" && (
+                <>
+                  <h1 className="text-2xl font-bold text-gray-800 mb-6">
+                    Profile Information
+                  </h1>
+
+                  <div className="bg-gray-50 p-6 rounded-xl mb-8 border border-gray-100">
+                    <div className="flex flex-wrap items-center">
+                      <div className="w-full md:w-1/4">
+                        <span className="text-sm font-medium text-gray-500">
+                          MEMBER SINCE
+                        </span>
+                      </div>
+                      <div className="w-full md:w-3/4 mt-2 md:mt-0">
+                        <span className="flex items-center text-gray-800">
+                          <Calendar className="w-4 h-4 mr-2 text-orange-400" />
+                          {currentUser?.metadata?.creationTime
+                            ? new Date(
+                                currentUser.metadata.creationTime
+                              ).toLocaleDateString()
+                            : "N/A"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleProfileUpdate} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="username"
+                          className="block text-sm font-medium text-gray-700 mb-2"
+                        >
+                          Username
+                        </label>
+                        <input
+                          type="text"
+                          id="username"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="profile-email"
+                          className="block text-sm font-medium text-gray-700 mb-2"
+                        >
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          id="profile-email"
+                          value={email}
+                          readOnly
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-100 text-gray-500"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Email cannot be changed
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4">
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="px-6 py-3 bg-orange-100 text-orange-700 hover:bg-orange-200 rounded-lg transition-colors disabled:opacity-70 flex items-center justify-center"
+                      >
+                        {loading ? (
+                          <span className="flex items-center">
+                            <svg
+                              className="animate-spin -ml-1 mr-2 h-4 w-4 text-orange-700"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              ></path>
+                            </svg>
+                            Updating...
+                          </span>
+                        ) : (
+                          "Update Profile"
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                </>
+              )}
+
+              {activeTab === "account" && (
+                <>
+                  <h1 className="text-2xl font-bold text-gray-800 mb-6">
+                    Account Settings
+                  </h1>
+
+                  <div className="bg-gray-50 p-6 rounded-xl mb-6 border border-gray-100">
+                    <h3 className="text-lg font-medium text-gray-800 mb-4">
+                      Email Address
+                    </h3>
+                    <p className="text-gray-600 mb-3">
+                      Your current email address is <strong>{email}</strong>
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      This email is used for login and notifications.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                    <h3 className="text-lg font-medium text-gray-800 mb-4">
+                      Password
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      Password changes are not available directly from this
+                      page. If you need to reset your password, please use the
+                      login page's "Forgot Password" option.
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -303,7 +450,7 @@ const SignupPage = () => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
               required
             />
           </div>
@@ -320,7 +467,7 @@ const SignupPage = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
               required
             />
           </div>
@@ -337,7 +484,7 @@ const SignupPage = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
               required
               minLength={6}
             />
@@ -355,7 +502,7 @@ const SignupPage = () => {
               id="confirm-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
               required
               minLength={6}
             />
@@ -364,7 +511,7 @@ const SignupPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-70"
+            className="w-full bg-orange-100 text-orange-700 hover:bg-orange-200 py-2 rounded-md transition-colors disabled:opacity-70"
           >
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
@@ -416,7 +563,7 @@ const SignupPage = () => {
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to="/signin" className="text-blue-600 hover:underline">
+          <Link to="/signin" className="text-orange-600 hover:underline">
             Sign in
           </Link>
         </p>

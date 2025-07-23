@@ -14,8 +14,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
-      <div className="flex-1 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="flex flex-col min-h-screen bg-gray-50 ">
+      <div className="flex-1 ">
         {/* Welcome Section */}
         <div className="mb-10">
           <h1 className="text-3xl font-bold text-slate-800 mb-4">

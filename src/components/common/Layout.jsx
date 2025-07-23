@@ -1,30 +1,3 @@
-// // components/common/Layout.jsx
-// import React, { useState } from 'react';
-// import Header from './Header';
-// import Sidebar from './Sidebar';
-
-// const Layout = ({ children }) => {
-//   const [activeItem, setActiveItem] = useState('dashboard');
-
-//   return (
-//     <div className="min-h-screen bg-slate-50">
-//       <Header />
-
-//       <div className="flex">
-//         <Sidebar activeItem={activeItem} setActiveItem={setActiveItem} />
-
-//         <main className="flex-1 p-8">
-//           <div className="max-w-6xl mx-auto">
-//             {children}
-//           </div>
-//         </main>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Layout;
-
 import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -41,8 +14,8 @@ const Layout = ({ children }) => {
         {/* Sidebar (responsive) */}
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        {/* Main content - scrollable */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto h-[calc(100vh-64px)]">
+        {/* Main content - scrollable but hide scrollbar */}
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto no-scrollbar h-[calc(100vh-64px)]">
           <div className="max-w-6xl mx-auto">{children}</div>
         </main>
       </div>
