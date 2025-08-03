@@ -23,8 +23,7 @@ const Dashboard = () => {
   }, [getAllPopularRecipes]);
 
   const handleGenerateClick = () => {
-    // Navigate to a future recipe generator page
-    alert("Recipe generator feature is coming soon!");
+    navigate("/generate");
   };
 
   return (

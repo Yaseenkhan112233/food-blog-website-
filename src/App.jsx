@@ -18,6 +18,7 @@ import SignupPage from "./pages/SignupPage";
 import SignInPage from "./pages/SignInPage";
 import RecipeDetailPage from "./pages/RecipeDetailPage";
 import CategoryPage from "./pages/CategoryPage";
+import RecipeGenerator from "./pages/RecipeGenerator";
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -56,6 +57,7 @@ const App = () => {
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/signin" element={<SignInPage />} />
               <Route path="/recipe/:id" element={<RecipeDetailPage />} />
+              <Route path="/generate" element={<RecipeGenerator />} />
             </Routes>
           </Layout>
         )}
