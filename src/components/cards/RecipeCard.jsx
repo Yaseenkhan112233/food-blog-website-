@@ -36,7 +36,7 @@ const RecipeCard = ({
   return (
     <div
       onClick={handleCardClick}
-      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group"
+      className="bg-[#DADBE0] rounded-xl overflow-hidden  hover:shadow-md transition-all duration-300 cursor-pointer group"
     >
       {/* Recipe Image / Header */}
       <div className="h-40 sm:h-48 md:h-52 relative overflow-hidden">

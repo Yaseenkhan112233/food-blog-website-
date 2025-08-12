@@ -64,7 +64,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     // Sidebar container - Fixed position, full height
     <aside
       className={`
-        bg-white shadow-md fixed top-16 bottom-0 left-0 z-40
+        bg-[#DADBE0]  fixed top-16 bottom-0 left-0 z-40
         w-64 transform transition-transform duration-300 ease-in-out
         overflow-y-auto
         ${isOpen ? "translate-x-0" : "-translate-x-full"}
@@ -93,7 +93,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                   onClick={() => handleNavigation(item.path)}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                     activeItem === item.id
-                      ? "bg-orange-50 text-orange-600 border-r-4 border-orange-300"
+                      ? "bg-[#C3CEF0]  text-[#1C2233] "
                       : "text-slate-600 hover:bg-slate-50"
                   }`}
                 >

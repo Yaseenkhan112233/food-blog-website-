@@ -27,14 +27,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-red">
       <div className="flex-1">
         {/* Popular Scrolling Carousel */}
 
         {/* Categories Section */}
         <Categories onGenerateClick={handleGenerateClick} />
         {popularRecipes.length > 0 && (
-          <div className="mb-8 bg-blue-50 py-2">
+          <div className="mb-8 bg-red py-2">
             <PopularScrollingCarousel recipes={popularRecipes} />
           </div>
         )}

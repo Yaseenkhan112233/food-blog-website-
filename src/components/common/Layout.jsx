@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false); // for mobile
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#DADBE0] flex flex-col">
       {/* Header */}
       <Header onMenuClick={() => setSidebarOpen(true)} />
 

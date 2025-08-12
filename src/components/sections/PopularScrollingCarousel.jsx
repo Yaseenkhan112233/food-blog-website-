@@ -57,7 +57,7 @@ const PopularScrollingCarousel = ({ recipes }) => {
             onClick={() => handleCardClick(recipe.id)}
             className="flex-shrink-0 w-48 cursor-pointer group"
           >
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="bg-[#DADBE0] rounded-lg shadow-sm overflow-hidden">
               <div className="h-24 relative">
                 <img
                   src={recipe.image}

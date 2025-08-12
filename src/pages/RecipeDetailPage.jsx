@@ -56,7 +56,7 @@ const RecipeDetailPage = () => {
   const hasMultipleImages = recipe.images && recipe.images.length > 1;
 
   return (
-    <div className="max-w-7xl mx-auto bg-gray-50 pb-12">
+    <div className="max-w-7xl mx-auto bg-[#DADBE0] pb-12">
       {/* Back Button */}
       <button
         onClick={handleBack}
@@ -75,7 +75,7 @@ const RecipeDetailPage = () => {
       {recipe.images && recipe.images.length > 0 ? (
         <div className="mb-8">
           {/* Main Image */}
-          <div className="rounded-xl overflow-hidden shadow-md mb-4">
+          <div className="rounded-xl overflow-hidden  mb-4">
             <img
               src={recipe.images[selectedImage]}
               alt={`${recipe.title} ${recipe.subtitle}`}
@@ -113,7 +113,7 @@ const RecipeDetailPage = () => {
       )}
 
       {/* Recipe Meta Info */}
-      <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
+      <div className="bg-[#DADBE0] rounded-xl p-6 mb-8">
         <div className="flex flex-wrap justify-between gap-4 mb-4">
           <div>
             <div className="flex items-center text-slate-500 mb-2">
@@ -137,7 +137,7 @@ const RecipeDetailPage = () => {
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
               isRecipeSaved(recipe.id)
                 ? "bg-red-500 text-white"
-                : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                : "bg-[#DADBE0]   text-slate-700 hover:bg-[#C3CEF0]"
             }`}
           >
             <Heart
@@ -153,13 +153,13 @@ const RecipeDetailPage = () => {
       </div>
 
       {/* Ingredients Section */}
-      <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
+      <div className="bg-[#DADBE0] rounded-xl  p-6 mb-8">
         <h2 className="text-2xl font-bold text-slate-800 mb-4">Ingredients</h2>
         <div className="flex flex-wrap gap-2 mb-4">
           {recipe.ingredients.map((ingredient, idx) => (
             <div
               key={idx}
-              className="bg-gray-100 px-3 py-1 rounded-full text-sm"
+              className="bg-[#DADBE0] px-3 py-1 rounded-full text-sm"
             >
               {ingredient}
             </div>
@@ -168,14 +168,14 @@ const RecipeDetailPage = () => {
       </div>
 
       {/* Cooking Method Section */}
-      <div className="bg-white rounded-xl shadow-sm p-6">
+      <div className="[#DADBE0] rounded-xl  p-6">
         <h2 className="text-2xl font-bold text-slate-800 mb-4">
           Cooking Method
         </h2>
         <ol className="space-y-4">
           {recipe.instructions.map((step, idx) => (
             <li key={idx} className="flex">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center mr-4 mt-0.5">
+              <span className="flex-shrink-0 w-6 h-6  text-black flex items-center justify-center mr-4 mt-0.5">
                 {idx + 1}
               </span>
               <span className="flex-grow">{step}</span>

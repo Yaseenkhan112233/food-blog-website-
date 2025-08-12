@@ -25,7 +25,7 @@ import { useNavigate } from "react-router-dom";
 const CategoryCard = ({
   image,
   title,
-  bgColor = "bg-slate-100",
+  bgColor = "bg-[#DADBE0]",
   categoryId,
 }) => {
   const navigate = useNavigate();
