@@ -14,7 +14,7 @@ const CategoriesPage = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold text-slate-800 mb-8">Categories</h1>
+      {/* <h1 className="text-3xl font-bold text-slate-800 mb-8">Categories</h1> */}
       <Categories
         onCategoryClick={handleCategoryClick}
         onGenerateClick={handleGenerateClick}

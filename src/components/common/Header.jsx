@@ -73,7 +73,7 @@ const Header = ({ onMenuClick }) => {
           </button>
 
           <img
-            src="/images/1.png"
+            src="/images/ReciGenIcon.png"
             alt="Logo"
             className="w-8 h-8 cursor-pointer"
             onClick={() => navigate("/")}
