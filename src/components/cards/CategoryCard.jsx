@@ -77,7 +77,7 @@ const CategoryCard = ({
     >
       <div className="flex flex-col items-center text-center">
         {isImageUrl ? (
-          <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center mb-4 shadow-sm overflow-hidden">
+          <div className={`${categoryId ==='desi'? 'w-66':'w-40'} h-44 flex items-center justify-center mb-4  overflow-hidden`}>
             <img
               src={image}
               alt={title}
@@ -85,7 +85,7 @@ const CategoryCard = ({
             />
           </div>
         ) : (
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white flex items-center justify-center mb-4 shadow-sm">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 ">
             <span className="text-2xl sm:text-3xl">{image}</span>
           </div>
         )}

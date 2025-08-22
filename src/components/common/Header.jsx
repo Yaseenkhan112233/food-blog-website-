@@ -59,7 +59,7 @@ const Header = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="bg-[#DADBE0]  py-4 fixed top-0 left-0 right-0 z-50 h-16">
+    <header className="bg-[#EFF0F5]  py-4 fixed top-0 left-0 right-0 z-50 h-16">
       <div className="flex items-center justify-between max-w-7xl mx-auto gap-4">
         {/* Left: Logo + Mobile Menu */}
         <div className="flex items-center space-x-2">

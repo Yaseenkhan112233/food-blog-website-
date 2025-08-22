@@ -83,6 +83,13 @@ const GenerateRecipeCard = ({ onClick }) => {
         </div> */}
 
         {/* Headings */}
+        
+
+        {/* Sparkle on hover */}
+        <div className="mt-4  transition-opacity duration-300">
+          <Sparkles className="w-5 h-5 text-blue-600" />
+          <img src="/images/GenerateIcon.png" alt="" />
+        </div>
         <div className="space-y-1">
           <h3 className="font-neue font-medium text-base sm:text-lg text-slate-800 group-hover:text-blue-800 transition-colors">
             Generate
@@ -93,12 +100,6 @@ const GenerateRecipeCard = ({ onClick }) => {
           <h3 className="font-neue font-medium text-base sm:text-lg text-slate-800 group-hover:text-blue-800 transition-colors">
             Recipe
           </h3>
-        </div>
-
-        {/* Sparkle on hover */}
-        <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <Sparkles className="w-5 h-5 text-blue-600" />
-          <img src="/images/GenerateIcon.png" alt="" />
         </div>
       </div>
     </div>
